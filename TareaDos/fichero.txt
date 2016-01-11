@@ -1,0 +1,18 @@
+
+Nombre: Sandi Alejo
+ , Pais: Mexico 
+, Genero: Femenino
+ \n. 
+
+Nombre: d \n, Pais: Mexico 
+, Genero: Femenino
+ . 
+
+Nombre: d\n, Pais: Mexico 
+, Genero: Femenino
+ . 
+
+Nombre: xx'
+ ', Pais: Mexico 
+, Genero: Femenino
+ . 
