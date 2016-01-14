@@ -1,70 +1,77 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logica;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Fichero {
 
     private String linea;
+    String hola = "hola";
+
+    public Fichero() {
+
+    }
 
     public void EscribirFichero(String Texto) {
         File fichero = new File("fichero.txt");
 
-        try{
+        try {
             PrintWriter Pw = new PrintWriter(new FileWriter(fichero, true));
 
             Pw.println(Texto);
 
             Pw.close();
 
-			// Escribimos linea a linea en el fichero
+            // Escribimos linea a linea en el fichero
         } catch (Exception ex) {
             //System.out.println("Mensaje de la excepción: " + ex.getMessage());
         }
 
     }
 
-    
-        public String LeerFichero(){
-    String textoCompleto = "";
+    public String LeerFichero() {
 
-                 // Fichero del que queremos leer
-		File fichero = new File("fichero.txt");
-		Scanner s = null;
+        String cadena = "";
+        Scanner s = null;
+        StringTokenizer st = null;
+        Cifrado mostrar = null;
 
-		try {
-			// Leemos el contenido del fichero
+        try {
+            st = new StringTokenizer("fichero.txt", " :,.");
 
-			s = new Scanner(fichero);
+            while (st.hasMoreTokens()) {
 
-			// Leemos linea a linea el fichero
-			while (s.hasNextLine()) {
-				 linea = s.nextLine(); 	// Guardamos la linea en un String
-                                textoCompleto = textoCompleto + linea;
-                                
-			//	System.out.println(linea);      // Imprimimos la linea
-			}
+                Cifrado descifrar = new Cifrado();
 
-		} catch (Exception ex) {
-			System.out.println("Mensaje: " + ex.getMessage());
-		} finally {
-			// Cerramos el fichero tanto si la lectura ha sido correcta o no
-			try {
-				if (s != null)
-					s.close();
-			} catch (Exception ex2) {
-				System.out.println("Mensaje 2: " + ex2.getMessage());
-			}
-		}
-    
-                return textoCompleto;
+                String tituloNombre = st.nextToken();
+                String nombre = descifrar.DescifrarDato(st.nextToken());
+                String tituloPais = st.nextToken();
+                String pais = descifrar.DescifrarDato(st.nextToken());
+                String tituloGenero = st.nextToken();
+                String genero = descifrar.DescifrarDato(st.nextToken());
+                String tituloContraseña = st.nextToken();
+                String contraseña = descifrar.DescifrarDato(st.nextToken());
+                cadena = tituloNombre + ": " + nombre + " " + tituloPais + ": " + pais + " " + tituloGenero + ": " + genero;
+                System.out.println(cadena);
+
+            }
+            this.hola = cadena;
+        } catch (Exception ex) {
+            System.out.println("Mensaje: " + ex.getMessage());
+        } finally {
+            // Cerramos el fichero tanto si la lectura ha sido correcta o no
+            try {
+                if (s != null) {
+                    s.close();
+                }
+            } catch (Exception ex2) {
+                System.out.println("Mensaje 2: " + ex2.getMessage());
+            }
+        }
+
+        return hola;
     }
-    
 }
